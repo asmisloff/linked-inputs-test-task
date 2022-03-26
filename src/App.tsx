@@ -11,7 +11,7 @@ function App() {
   const [color, setColor] = useState("white")
 
   return (
-    <div className="App">
+    <div className="App" style={{ display: "flex" }}>
       <SourceInput
         value={x}
         onChange={v => {
@@ -57,13 +57,19 @@ const ResultInput: FC<{
   color: string
 }> = ({ value, onChange, onReset, color }) => {
   return (
-    <input
-      type="number"
-      value={value}
-      onChange={e => onChange(+e.target.value)}
-      onDoubleClick={onReset}
-      style={{ backgroundColor: color }}
-    />
+    <div>
+      <input
+        type="number"
+        value={value}
+        onChange={e => onChange(+e.target.value)}
+        style={{ backgroundColor: color }}
+      />
+      <input
+        type="button"
+        value="link"
+        onClick={onReset}
+      />
+    </div>
   )
 }
 
