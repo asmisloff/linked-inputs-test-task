@@ -3,71 +3,42 @@ import { FC, useState } from 'react'
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
 
-  const [x, setX] = useState(0)
-  const [y, setY] = useState(0)
-  const [m, setM] = useState<number | undefined>(undefined)
-  const [color, setColor] = useState("white")
+/*                                       Задание
+Сделать так, чтобы в поле ResultInput отображалась сумма значений из двух SourceInput-ов.
+Также пользователь должен иметь возможность вручную ввести значение в ResultInput.
+Если пользователь ввел значение вручную, связь между SourceInput-ми и ResultInput-ом разрывается,
+а поле ResultInput окрашивается в желтый цвет.
+Пользователь может восстановить связь, нажав на кнопку с надписью "link". 
+*/
+function App() {
 
   return (
     <div className="App" style={{ display: "flex" }}>
-      <SourceInput
-        value={x}
-        onChange={v => {
-          setX(v)
-        }}
-      />
-      <SourceInput
-        value={y}
-        onChange={v => {
-          setY(v)
-        }}
-      />
-      <ResultInput
-        value={m == undefined ? x + y : m}
-        onChange={v => {
-          setM(v)
-          setColor("yellow")
-        }}
-        onReset={() => {
-          setM(undefined)
-          setColor("white")
-        }}
-        color={color}
-      />
+      <SourceInput />
+      <SourceInput />
+      <ResultInput />
     </div>
   );
 }
 
-const SourceInput: FC<{ value: number, onChange: (value: number) => void }> = ({ value, onChange }) => {
+const SourceInput: FC<{}> = ({ }) => {
   return (
     <input
       type="number"
-      value={value}
-      onChange={e => onChange(+e.target.value)}
     />
   )
 }
 
-const ResultInput: FC<{
-  value: number,
-  onChange: (value: number) => void
-  onReset: () => void,
-  color: string
-}> = ({ value, onChange, onReset, color }) => {
+const ResultInput: FC<{}> = ({ }) => {
   return (
     <div>
       <input
         type="number"
-        value={value}
-        onChange={e => onChange(+e.target.value)}
-        style={{ backgroundColor: color }}
       />
       <input
         type="button"
         value="link"
-        onClick={onReset}
       />
     </div>
   )
